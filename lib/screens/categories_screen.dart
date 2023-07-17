@@ -127,9 +127,73 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   final TextEditingController _searchController = TextEditingController();
+  bool _isSearching = false;
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _buildCategoryGroupWidgets() {
+      List<Widget> widgets = [];
+      for (var group in categoryGroups) {
+        widgets.add(
+          Text(
+            group.title,
+            style: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        );
+        widgets.add(SizedBox(height: 10.0));
+        widgets.add(
+          GridView.count(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            childAspectRatio: 2.5,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            children: group.categories
+                .map((category) => CategoryCard(category: category))
+                .toList(),
+          ),
+        );
+        widgets.add(SizedBox(height: 20.0));
+      }
+      return widgets;
+    }
+
+    List<Widget> _buildSearchResultWidgets() {
+      List<Category> searchResults = categories
+          .where((category) => category.title
+              .toLowerCase()
+              .contains(_searchController.text.toLowerCase()))
+          .toList();
+      return [
+        Text(
+          'Search Results',
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(height: 10.0),
+        GridView.count(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          crossAxisCount: 2,
+          childAspectRatio: 2.5,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          children: searchResults
+              .map((category) => CategoryCard(category: category))
+              .toList(),
+        ),
+        SizedBox(height: 20.0),
+      ];
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
@@ -150,7 +214,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     ),
                   ),
                   Container(
-                    width: 200, // adjust this value as needed
+                    width: 200,
                     child: TextField(
                       controller: _searchController,
                       decoration: InputDecoration(
@@ -158,7 +222,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         suffixIcon: Icon(Icons.search, color: Colors.white),
                       ),
                       onChanged: (value) {
-                        setState(() {});
+                        setState(() {
+                          _isSearching = value.isNotEmpty;
+                        });
                       },
                     ),
                   ),
@@ -166,42 +232,24 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               ),
               SizedBox(height: 20.0),
               Expanded(
-                child: ListView.builder(
-                  itemCount: categoryGroups.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          categoryGroups[index].title,
-                          style: TextStyle(
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(height: 10.0),
-                        GridView.count(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          childAspectRatio: 2.5,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          children: categoryGroups[index]
-                              .categories
-                              .where((category) => category.title
-                                  .toLowerCase()
-                                  .contains(
-                                      _searchController.text.toLowerCase()))
-                              .map((category) =>
-                                  CategoryCard(category: category))
-                              .toList(),
-                        ),
-                        SizedBox(height: 20.0),
-                      ],
-                    );
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 300),
+                  transitionBuilder:
+                      (Widget child, Animation<double> animation) {
+                    var tween =
+                        Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0));
+                    return SlideTransition(
+                        child: child, position: tween.animate(animation));
                   },
+                  child: _isSearching
+                      ? ListView(
+                          key: ValueKey(1),
+                          children: _buildSearchResultWidgets(),
+                        )
+                      : ListView(
+                          key: ValueKey(2),
+                          children: _buildCategoryGroupWidgets(),
+                        ),
                 ),
               ),
             ],
