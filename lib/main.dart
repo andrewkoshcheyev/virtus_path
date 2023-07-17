@@ -6,6 +6,8 @@ import 'challenge_screen.dart';
 import 'favorites_screen.dart';
 import 'settings_screen.dart';
 import 'models/quote.dart';
+import 'screens/draft_screen01.dart';
+import 'screens/draft_screen02.dart';
 
 void main() {
   runApp(VirtusPathApp());
@@ -32,7 +34,7 @@ class VirtusPathApp extends StatelessWidget {
         '/': (context) => HomeScreen(),
         '/settings': (context) => SettingsScreen(),
         '/quoteDetail': (context) => QuoteDetailScreen(),
-        '/challenges': (context) => ChallengeScreen(),
+        '/challenges': (context) => Draft02Screen(),
         '/categories': (context) => CategoryScreen(),
         '/favorites': (context) => FavoritesScreen(),
       },

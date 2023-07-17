@@ -14,8 +14,8 @@ class NavigationGrid extends StatelessWidget {
         children: <Widget>[
           _buildCard('Categories', '/categories', context),
           _buildCard('Challenges', '/challenges', context),
-          _buildCard('Favorites', '/favorites', context),
-          _buildCard('Settings', '/settings', context),
+          _buildCard('Affirmations', '/favorites', context),
+          _buildCard('Mood', '/settings', context),
         ],
       ),
     );
