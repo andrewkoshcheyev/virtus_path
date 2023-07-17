@@ -26,6 +26,29 @@ List<Category> categories = [
       title: 'Health', icon: Icons.favorite_border, color: Colors.lightGreen),
   Category(title: 'Family', icon: Icons.group, color: Colors.brown),
   Category(title: 'Goals', icon: Icons.flag, color: Colors.cyan),
+  Category(
+      title: 'Workout Motivation',
+      icon: Icons.fitness_center,
+      color: Colors.deepPurple),
+  Category(
+      title: 'Self-Development', icon: Icons.person, color: Colors.deepOrange),
+  Category(
+      title: 'Relationships', icon: Icons.favorite_border, color: Colors.pink),
+  Category(
+      title: 'Growing Your Business', icon: Icons.business, color: Colors.blue),
+  Category(
+      title: 'Overcoming Addictions',
+      icon: Icons.no_drinks,
+      color: Colors.green),
+  Category(
+      title: 'Healthy Lifestyle',
+      icon: Icons.local_dining,
+      color: Colors.orange),
+  Category(
+      title: 'Becoming the Best Version of Yourself',
+      icon: Icons.star,
+      color: Colors.purple),
+  Category(title: 'Becoming a Man', icon: Icons.male, color: Colors.brown),
 ];
 
 class CategoryGroup {
@@ -41,7 +64,6 @@ List<CategoryGroup> categoryGroups = [
     categories: [
       Category(title: 'Motivation', icon: Icons.flash_on, color: Colors.yellow),
       Category(title: 'Love', icon: Icons.favorite, color: Colors.red),
-      // Add more categories as needed
     ],
   ),
   CategoryGroup(
@@ -53,7 +75,6 @@ List<CategoryGroup> categoryGroups = [
           title: 'Growing Your Business',
           icon: Icons.business,
           color: Colors.green),
-      // Add more categories as needed
     ],
   ),
   CategoryGroup(
@@ -67,7 +88,6 @@ List<CategoryGroup> categoryGroups = [
           title: 'Overcoming Addictions',
           icon: Icons.no_drinks,
           color: Colors.red),
-      // Add more categories as needed
     ],
   ),
   CategoryGroup(
@@ -78,10 +98,8 @@ List<CategoryGroup> categoryGroups = [
           icon: Icons.star,
           color: Colors.purple),
       Category(title: 'Becoming a Man', icon: Icons.male, color: Colors.brown),
-      // Add more categories as needed
     ],
   ),
-  // Add more category groups as needed
 ];
 
 class CategoryCard extends StatelessWidget {
@@ -236,10 +254,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   duration: Duration(milliseconds: 300),
                   transitionBuilder:
                       (Widget child, Animation<double> animation) {
-                    var tween =
-                        Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0));
-                    return SlideTransition(
-                        child: child, position: tween.animate(animation));
+                    return ScaleTransition(
+                      scale: animation,
+                      child: child,
+                    );
                   },
                   child: _isSearching
                       ? ListView(
