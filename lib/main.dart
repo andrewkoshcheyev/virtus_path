@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
-import 'category_screen.dart';
+import 'screens/categories_screen.dart';
 import 'quote_detail_screen.dart';
 import 'challenge_screen.dart';
 import 'favorites_screen.dart';
@@ -35,7 +35,7 @@ class VirtusPathApp extends StatelessWidget {
         '/settings': (context) => SettingsScreen(),
         '/quoteDetail': (context) => QuoteDetailScreen(),
         '/challenges': (context) => Draft02Screen(),
-        '/categories': (context) => CategoryScreen(),
+        '/categories': (context) => CategoriesScreen(),
         '/favorites': (context) => FavoritesScreen(),
       },
     );

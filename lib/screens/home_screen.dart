@@ -22,84 +22,14 @@ List<Quote> quotes = [
       imagePath: 'assets/images/image3.jpg'),
 ];
 
-/*class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SwipeableCardSectionController _cardController =
-        SwipeableCardSectionController();
-
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 400, // This line sets the height of the card.
-                  child: SwipeableCardsSection(
-                    cardController: _cardController,
-                    context: context,
-                    items:
-                        quotes.map((quote) => _buildQuoteCard(quote)).toList(),
-                    onCardSwiped: (dir, index, widget) {
-                      if (index < quotes.length - 1) {
-                        _cardController
-                            .addItem(_buildQuoteCard(quotes[index + 1]));
-                      }
-                    },
-                    enableSwipeUp: true,
-                    enableSwipeDown: false,
-                  ),
-                ),
-                Container(
-                  height: 400, // set a specific height for your GridView
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    childAspectRatio:
-                        3 / 2, // This is the aspect ratio of the cards.
-                    children: <Widget>[
-                      _buildCard('Categories', '/categories', context),
-                      _buildCard('Challenges', '/challenges', context),
-                      _buildCard('Favorites', '/favorites', context),
-                      _buildCard('Settings', '/settings', context),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  
-}*/
-
-/*class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              children: <Widget>[
-                QuoteCardsSection(quotes: quotes),
-                NavigationGrid(),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}*/
-
 class HomeScreen extends StatelessWidget {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    _selectedIndex = index;
+    // TODO: Implement functionality to switch between pages
+  }
+
   @override
   Widget build(BuildContext context) {
     SwipeableCardSectionController _cardController =
@@ -108,24 +38,163 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor:
           Theme.of(context).backgroundColor, // Set the background color
+      body: Stack(
+        children: [
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(top: 16.0), // Adjust the padding here
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Welcome, Username',
+                            style: TextStyle(
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white, // Set the text color
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.menu),
+                            iconSize: 32.0, // Make the icon bigger
+                            color: Colors.white, // Set the icon color
+                            onPressed: () {
+                              // TODO: Implement the functionality to open the drawer
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          bottom:
+                              20.0), // Space between QuoteCardStack and NavigationGrid
+                      child: QuoteCardsSection(quotes: quotes),
+                    ),
+                    NavigationGrid(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              height: 60,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 0,
+                    blurRadius: 10,
+                    offset: Offset(0, 5), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      child: Text(
+                        'Virtus Path',
+                        style: TextStyle(
+                            color: _selectedIndex == 0
+                                ? Colors.orange
+                                : Colors.black),
+                      ),
+                      onPressed: () {
+                        // TODO: Implement functionality to switch to 'Virtus Path'
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: TextButton(
+                      child: Text(
+                        'My Path',
+                        style: TextStyle(
+                            color: _selectedIndex == 1
+                                ? Colors.orange
+                                : Colors.black),
+                      ),
+                      onPressed: () {
+                        // TODO: Implement functionality to switch to 'My Path'
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SwipeableCardSectionController _cardController =
+        SwipeableCardSectionController();
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                      bottom:
-                          20.0), // Space between QuoteCardStack and NavigationGrid
-                  child: QuoteCardsSection(quotes: quotes),
+          child: Column(
+            children: [
+              // Custom scrollable title container
+              Container(
+                height: 56,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Welcome Back",
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                    IconButton(
+                        icon: Icon(Icons.menu),
+                        color: Colors.white,
+                        onPressed: () {
+                          // Open drawer
+                        })
+                  ],
                 ),
-                NavigationGrid(),
-              ],
-            ),
+              ),
+
+              Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: QuoteCardsSection(quotes: quotes)),
+
+              NavigationGrid()
+            ],
           ),
         ),
       ),
     );
   }
-}
+}*/
