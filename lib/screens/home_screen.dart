@@ -3,7 +3,7 @@ import '../models/quote.dart';
 import 'dart:ui';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 import '../widgets/navigation_grid.dart';
-import '../widgets/quote_card_section.dart';
+import '../widgets/quote_card.dart';
 import 'package:animations/animations.dart';
 import '../data/quotes_data.dart';
 
