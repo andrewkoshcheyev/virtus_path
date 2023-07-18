@@ -17,6 +17,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Category> _buildSearchResults() {
+      return categories
+          .where((category) => category.title
+              .toLowerCase()
+              .contains(_searchController.text.toLowerCase()))
+          .toList();
+    }
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
@@ -37,7 +45,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     ),
                   ),
                   Container(
-                    width: 200, // adjust this value as needed
+                    width: 200,
                     child: TextField(
                       controller: _searchController,
                       decoration: InputDecoration(
@@ -56,28 +64,23 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               SizedBox(height: 20.0),
               Expanded(
                 child: _isSearching
-                    ? ListView(
-                        children: categoryGroups.entries
-                            .map((entry) => CategoryGroup(
-                                  groupName: entry.key,
-                                  categories: entry.value
-                                      .where((category) => category.title
-                                          .toLowerCase()
-                                          .contains(_searchController.text
-                                              .toLowerCase()))
-                                      .toList(),
-                                  searchText: _searchController.text,
-                                ))
+                    ? GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: 2.5,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        children: _buildSearchResults()
+                            .map((category) => CategoryCard(category: category))
                             .toList(),
                       )
                     : ListView(
-                        children: categoryGroups.entries
-                            .map((entry) => CategoryGroup(
-                                  groupName: entry.key,
-                                  categories: entry.value,
-                                  searchText: _searchController.text,
-                                ))
-                            .toList(),
+                        children: categoryGroups.entries.map((entry) {
+                          return CategoryGroup(
+                            groupName: entry.key,
+                            categories: entry.value,
+                            searchText: _searchController.text,
+                          );
+                        }).toList(),
                       ),
               ),
             ],

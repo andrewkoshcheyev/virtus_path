@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animated_widgets/animated_widgets.dart';
 import '../models/category.dart';
 import 'category_card.dart';
 
@@ -15,6 +16,13 @@ class CategoryGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Category> filteredCategories = searchText.isEmpty
+        ? categories
+        : categories
+            .where((category) =>
+                category.title.toLowerCase().contains(searchText.toLowerCase()))
+            .toList();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -39,18 +47,12 @@ class CategoryGroup extends StatelessWidget {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: categories.map((category) {
-            return AnimatedSwitcher(
+            return ScaleAnimatedWidget.tween(
               duration: Duration(milliseconds: 500),
-              transitionBuilder: (Widget child, Animation<double> animation) {
-                return ScaleTransition(child: child, scale: animation);
-              },
-              child: searchText.isEmpty ||
-                      category.title
-                          .toLowerCase()
-                          .contains(searchText.toLowerCase())
-                  ? CategoryCard(
-                      category: category, key: ValueKey(category.title))
-                  : Container(key: ValueKey(category.title + 'empty')),
+              scaleDisabled: 0,
+              scaleEnabled: 1,
+              enabled: filteredCategories.contains(category),
+              child: CategoryCard(category: category),
             );
           }).toList(),
         ),
