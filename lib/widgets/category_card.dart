@@ -14,9 +14,11 @@ class CategoryCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ScaleAnimatedWidget.tween(
         duration: Duration(milliseconds: 500),
-        scaleDisabled: 1,
-        scaleEnabled: 0,
-        enabled: key.toString().contains('search'),
+        scaleDisabled: 0, // not visible
+        scaleEnabled: 1, // fully visible
+        enabled: !key
+            .toString()
+            .contains('empty'), // true when the card should be visible
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
