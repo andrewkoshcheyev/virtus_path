@@ -12,6 +12,7 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   final TextEditingController _searchController = TextEditingController();
+  bool _isSearching = false;
 
   @override
   Widget build(BuildContext context) {
@@ -37,26 +38,43 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Categories',
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                  IconButton(
+                    icon: Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
-                  Container(
-                    width: 200, // adjust this value as needed
-                    child: TextField(
-                      controller: _searchController,
-                      decoration: InputDecoration(
-                        hintText: 'Search',
-                        suffixIcon: Icon(Icons.search, color: Colors.white),
-                      ),
-                      onChanged: (value) {
-                        setState(() {});
-                      },
-                    ),
+                  _isSearching
+                      ? Expanded(
+                          child: TextField(
+                            controller: _searchController,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                              hintText: 'Search',
+                              hintStyle: TextStyle(color: Colors.white),
+                              suffixIcon:
+                                  Icon(Icons.search, color: Colors.white),
+                            ),
+                            onChanged: (value) {
+                              setState(() {});
+                            },
+                          ),
+                        )
+                      : Text(
+                          'Categories',
+                          style: TextStyle(
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                  IconButton(
+                    icon: Icon(Icons.search, color: Colors.white),
+                    onPressed: () {
+                      setState(() {
+                        _isSearching = true;
+                      });
+                    },
                   ),
                 ],
               ),
