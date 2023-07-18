@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../models/category.dart';
 import '../data/category_data.dart';
 import '../widgets/category_card.dart';
+import '../widgets/category_group.dart';
+import 'search_results_screen.dart';
+import 'package:animated_widgets/animated_widgets.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -10,10 +13,10 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   final TextEditingController _searchController = TextEditingController();
+  bool _isSearching = false;
 
   @override
   Widget build(BuildContext context) {
-    List<Category> categories = categoryGroups.values.expand((x) => x).toList();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
@@ -42,7 +45,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         suffixIcon: Icon(Icons.search, color: Colors.white),
                       ),
                       onChanged: (value) {
-                        setState(() {});
+                        setState(() {
+                          _isSearching = value.isNotEmpty;
+                        });
                       },
                     ),
                   ),
@@ -50,21 +55,30 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               ),
               SizedBox(height: 20.0),
               Expanded(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  childAspectRatio: 2.5,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  children: categories
-                      .where((category) => category.title
-                          .toLowerCase()
-                          .contains(_searchController.text.toLowerCase()))
-                      .map((category) => CategoryCard(
-                            category: category,
-                            key: ValueKey(category),
-                          ))
-                      .toList(),
-                ),
+                child: _isSearching
+                    ? ListView(
+                        children: categoryGroups.entries
+                            .map((entry) => CategoryGroup(
+                                  groupName: entry.key,
+                                  categories: entry.value
+                                      .where((category) => category.title
+                                          .toLowerCase()
+                                          .contains(_searchController.text
+                                              .toLowerCase()))
+                                      .toList(),
+                                  searchText: _searchController.text,
+                                ))
+                            .toList(),
+                      )
+                    : ListView(
+                        children: categoryGroups.entries
+                            .map((entry) => CategoryGroup(
+                                  groupName: entry.key,
+                                  categories: entry.value,
+                                  searchText: _searchController.text,
+                                ))
+                            .toList(),
+                      ),
               ),
             ],
           ),
