@@ -5,23 +5,7 @@ import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 import '../widgets/navigation_grid.dart';
 import '../widgets/quote_card_section.dart';
 import 'package:animations/animations.dart';
-
-List<Quote> quotes = [
-  Quote(
-      text:
-          "When I let go of what I am, I become what I might be. When I let go of what I have, I receive what I need.",
-      author: "Tao Te Ching",
-      imagePath: 'assets/images/image1.jpg'),
-  Quote(
-      text:
-          "Hardships often prepare ordinary people for an extraordinary destiny.",
-      author: "C.S. Lewis",
-      imagePath: 'assets/images/image2.jpg'),
-  Quote(
-      text: "The pain you feel today will be the strength you feel tomorrow.",
-      author: "Unknown",
-      imagePath: 'assets/images/image3.jpg'),
-];
+import '../data/quotes_data.dart';
 
 class HomeScreen extends StatelessWidget {
   int _selectedIndex = 0;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
+import '../screens/quote_detail_screen.dart';
 import 'package:animated_widgets/animated_widgets.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -14,23 +15,33 @@ class CategoryCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ScaleAnimatedWidget.tween(
         duration: Duration(milliseconds: 500),
-        scaleDisabled: 0, // not visible
-        scaleEnabled: 1, // fully visible
-        enabled: !key
-            .toString()
-            .contains('empty'), // true when the card should be visible
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Center(
-            child: Text(
-              category.title,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
+        scaleDisabled: 1,
+        scaleEnabled: 0,
+        enabled: key.toString().contains('search'),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => QuoteDetailScreen(
+                    quote: category.quotes[
+                        0]), // pass the first quote of the category here
+              ),
+            );
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: Center(
+              child: Text(
+                category.title,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
