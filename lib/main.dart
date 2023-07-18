@@ -10,8 +10,17 @@ import 'screens/draft_screen01.dart';
 import 'screens/draft_screen02.dart';
 import 'data/quotes_data.dart'; // import the quotes data
 import 'helpers/database_helper.dart'; // import the database helper
+import 'dart:io';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:flutter/foundation.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (!kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux)) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
   runApp(VirtusPathApp());
 }
 
