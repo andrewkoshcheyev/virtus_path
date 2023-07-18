@@ -33,7 +33,7 @@ class VirtusPathApp extends StatelessWidget {
         //!obsolete?
         '/': (context) => HomeScreen(),
         '/settings': (context) => SettingsScreen(),
-        '/quoteDetail': (context) => QuoteDetailScreen(),
+        /*'/quoteDetail': (context) => QuoteDetailScreen(),*/
         '/challenges': (context) => Draft02Screen(),
         '/categories': (context) => CategoriesScreen(),
         '/favorites': (context) => FavoritesScreen(),

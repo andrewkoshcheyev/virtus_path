@@ -26,6 +26,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             .toList());
       }
     }
+    /*List<Category> searchResults = categories
+    .where((category) => category.quotes.any((quote) => quote.text.toLowerCase().contains(searchText.toLowerCase())))
+    .toList();*/
 
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
-import '../screens/quote_detail_screen.dart';
 import 'package:animated_widgets/animated_widgets.dart';
+import '../screens/quote_detail_screen.dart';
+import '../data/quotes_data.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -18,14 +19,16 @@ class CategoryCard extends StatelessWidget {
         scaleDisabled: 1,
         scaleEnabled: 0,
         enabled: key.toString().contains('search'),
-        child: GestureDetector(
+        child: InkWell(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => QuoteDetailScreen(
-                    quote: category.quotes[
-                        0]), // pass the first quote of the category here
+                  quote: quotes.firstWhere((quote) => quote.categories.contains(
+                      category
+                          .title)), // pass the first quote of the category here
+                ),
               ),
             );
           },
