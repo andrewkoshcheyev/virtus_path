@@ -5,26 +5,38 @@ import 'dart:ui';
 import 'package:animations/animations.dart';
 import '../screens/quote_detail_screen.dart';
 
-class QuoteCardsSection extends StatelessWidget {
+class QuoteCardsSection extends StatefulWidget {
   final List<Quote> quotes;
 
   QuoteCardsSection({required this.quotes});
 
   @override
-  Widget build(BuildContext context) {
-    SwipeableCardSectionController _cardController =
-        SwipeableCardSectionController();
+  _QuoteCardsSectionState createState() => _QuoteCardsSectionState();
+}
 
+class _QuoteCardsSectionState extends State<QuoteCardsSection> {
+  late SwipeableCardSectionController _cardController;
+
+  @override
+  void initState() {
+    super.initState();
+    _cardController = SwipeableCardSectionController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       height: 400,
       child: SwipeableCardsSection(
         cardController: _cardController,
         context: context,
-        items: quotes.map((quote) => _buildQuoteCard(context, quote)).toList(),
+        items: widget.quotes
+            .map((quote) => _buildQuoteCard(context, quote))
+            .toList(),
         onCardSwiped: (dir, index, widget) {
-          if (index < quotes.length - 1) {
+          if (index < widget.quotes.length - 1) {
             _cardController
-                .addItem(_buildQuoteCard(context, quotes[index + 1]));
+                .addItem(_buildQuoteCard(context, widget.quotes[index + 1]));
           }
         },
         enableSwipeUp: true,
