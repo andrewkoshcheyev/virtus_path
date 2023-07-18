@@ -33,7 +33,8 @@ class _QuoteCardsSectionState extends State<QuoteCardsSection> {
         items: widget.quotes
             .map((quote) => _buildQuoteCard(context, quote))
             .toList(),
-        onCardSwiped: (dir, index, widget) {
+        onCardSwiped: (dir, index, _) {
+          // change widget to _ as we don't use it
           if (index < widget.quotes.length - 1) {
             _cardController
                 .addItem(_buildQuoteCard(context, widget.quotes[index + 1]));

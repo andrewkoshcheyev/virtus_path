@@ -24,6 +24,7 @@ class NavigationGrid extends StatelessWidget {
   // Your _buildCard method goes here.
   Card _buildCard(String title, String route, BuildContext context) {
     return Card(
+      color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
             15.0), // This is the border radius of the card.
@@ -37,9 +38,9 @@ class NavigationGrid extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontSize: 18, // Larger font size
-              color: Theme.of(context)
-                  .primaryColor, // Use primary color for the text
+              color: Colors.black,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold, // Use primary color for the text
             ),
           ),
         ),
