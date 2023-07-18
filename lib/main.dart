@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/categories_screen.dart';
-import 'quote_detail_screen.dart';
-import 'challenge_screen.dart';
-import 'favorites_screen.dart';
-import 'settings_screen.dart';
+import 'screens/quote_detail_screen.dart';
+import 'screens/challenge_screen.dart';
+import 'screens/favorites_screen.dart';
+import 'screens/settings_screen.dart';
 import 'models/quote.dart';
 import 'screens/draft_screen01.dart';
 import 'screens/draft_screen02.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:animated_widgets/animated_widgets.dart';
 import '../models/category.dart';
 import 'category_card.dart';
+import 'package:animated_widgets/animated_widgets.dart';
 
 class CategoryGroup extends StatelessWidget {
   final String groupName;
@@ -16,12 +16,25 @@ class CategoryGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Category> filteredCategories = searchText.isEmpty
-        ? categories
-        : categories
-            .where((category) =>
-                category.title.toLowerCase().contains(searchText.toLowerCase()))
-            .toList();
+    List<Category> searchResults = categories
+        .where((category) =>
+            category.title.toLowerCase().contains(searchText.toLowerCase()))
+        .toList();
+
+    List<Widget> categoryCards = (searchText.isEmpty
+            ? categories
+            : searchResults)
+        .map((category) => ScaleAnimatedWidget.tween(
+              duration: Duration(milliseconds: 600),
+              curve: Curves.easeInOut,
+              scaleDisabled: 0.8,
+              scaleEnabled: 1,
+              child: CategoryCard(
+                  category: category,
+                  key: ValueKey(
+                      category.title + (searchText.isEmpty ? '' : 'search'))),
+            ))
+        .toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,15 +59,7 @@ class CategoryGroup extends StatelessWidget {
           childAspectRatio: 2.5,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
-          children: categories.map((category) {
-            return ScaleAnimatedWidget.tween(
-              duration: Duration(milliseconds: 500),
-              scaleDisabled: 0,
-              scaleEnabled: 1,
-              enabled: filteredCategories.contains(category),
-              child: CategoryCard(category: category),
-            );
-          }).toList(),
+          children: categoryCards,
         ),
       ],
     );

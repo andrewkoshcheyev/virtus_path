@@ -4,7 +4,7 @@ import '../data/category_data.dart';
 import '../widgets/category_card.dart';
 import '../widgets/category_group.dart';
 
-class SearchResultsScreen extends StatefulWidget {
+/*class SearchResultsScreen extends StatefulWidget {
   final String searchText;
 
   SearchResultsScreen({required this.searchText});
@@ -79,4 +79,4 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
       ),
     );
   }
-}
+}*/

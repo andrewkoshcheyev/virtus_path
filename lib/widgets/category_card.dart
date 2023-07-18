@@ -1,55 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:animated_widgets/animated_widgets.dart';
 import '../models/category.dart';
+import 'package:animated_widgets/animated_widgets.dart';
 
-class CategoryCard extends StatefulWidget {
+class CategoryCard extends StatelessWidget {
   final Category category;
+  final Key key;
 
-  CategoryCard({required this.category, Key? key}) : super(key: key);
-
-  @override
-  _CategoryCardState createState() => _CategoryCardState();
-}
-
-class _CategoryCardState extends State<CategoryCard>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 500),
-      vsync: this,
-    )..forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
+  CategoryCard({required this.category, required this.key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ScaleAnimatedWidget.tween(
-      duration: Duration(milliseconds: 500),
-      scaleDisabled: 0.0,
-      scaleEnabled: 1.0,
-      enabled: _animationController.value == 1.0,
-      curve: Curves.easeInOut,
-      child: Container(
-        decoration: BoxDecoration(
-          color: widget.category.color,
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        child: Center(
-          child: Text(
-            widget.category.title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ScaleAnimatedWidget.tween(
+        duration: Duration(milliseconds: 500),
+        scaleDisabled: 1,
+        scaleEnabled: 0,
+        enabled: key.toString().contains('search'),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: Center(
+            child: Text(
+              category.title,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
