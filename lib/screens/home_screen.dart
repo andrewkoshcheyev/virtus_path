@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 import '../widgets/navigation_grid.dart';
 import '../widgets/quote_card_section.dart';
+import 'package:animations/animations.dart';
 
 List<Quote> quotes = [
   Quote(

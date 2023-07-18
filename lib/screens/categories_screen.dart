@@ -44,42 +44,47 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       Navigator.pop(context);
                     },
                   ),
-                  AnimatedSwitcher(
-                    duration: Duration(milliseconds: 300),
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
-                      return SlideTransition(
-                        child: child,
-                        position: Tween<Offset>(
-                          begin: Offset(0.0, -1.0),
-                          end: Offset(0.0, 0.0),
-                        ).animate(animation),
-                      );
-                    },
-                    child: _isSearching
-                        ? Container(
-                            width: MediaQuery.of(context).size.width * 0.7,
-                            child: TextField(
-                              controller: _searchController,
-                              style: TextStyle(color: Colors.white),
-                              decoration: InputDecoration(
-                                hintText: 'Search',
-                                hintStyle: TextStyle(color: Colors.white),
+                  Expanded(
+                    child: AnimatedSwitcher(
+                      duration: Duration(milliseconds: 300),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                        return SlideTransition(
+                          child: child,
+                          position: Tween<Offset>(
+                            begin: Offset(0.0, -1.0),
+                            end: Offset(0.0, 0.0),
+                          ).animate(animation),
+                        );
+                      },
+                      child: _isSearching
+                          ? Container(
+                              width: MediaQuery.of(context).size.width * 0.7,
+                              child: TextField(
+                                controller: _searchController,
+                                style: TextStyle(color: Colors.white),
+                                decoration: InputDecoration(
+                                  hintText: 'Search',
+                                  hintStyle: TextStyle(color: Colors.white),
+                                ),
+                                onChanged: (value) {
+                                  setState(() {});
+                                },
                               ),
-                              onChanged: (value) {
-                                setState(() {});
-                              },
+                            )
+                          : Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Categories',
+                                style: TextStyle(
+                                  fontSize: 32.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                                key: ValueKey<int>(0),
+                              ),
                             ),
-                          )
-                        : Text(
-                            'Categories',
-                            style: TextStyle(
-                              fontSize: 32.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                            key: ValueKey<int>(0),
-                          ),
+                    ),
                   ),
                   IconButton(
                     icon: Icon(Icons.search, color: Colors.white),

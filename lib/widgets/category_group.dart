@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
 import 'category_card.dart';
+import 'package:animated_widgets/animated_widgets.dart';
 
 class CategoryGroup extends StatelessWidget {
   final String groupName;
@@ -20,14 +21,20 @@ class CategoryGroup extends StatelessWidget {
             category.title.toLowerCase().contains(searchText.toLowerCase()))
         .toList();
 
-    List<Widget> categoryCards =
-        (searchText.isEmpty ? categories : searchResults)
-            .map((category) => CategoryCard(
+    List<Widget> categoryCards = (searchText.isEmpty
+            ? categories
+            : searchResults)
+        .map((category) => ScaleAnimatedWidget.tween(
+              duration: Duration(milliseconds: 600),
+              curve: Curves.easeInOut,
+              scaleDisabled: 0,
+              scaleEnabled: 1,
+              child: CategoryCard(
                   category: category,
                   key: ValueKey(
-                      category.title + (searchText.isEmpty ? '' : 'search')),
-                ))
-            .toList();
+                      category.title + (searchText.isEmpty ? '' : 'search'))),
+            ))
+        .toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,12 +42,18 @@ class CategoryGroup extends StatelessWidget {
         AnimatedOpacity(
           duration: Duration(milliseconds: 500),
           opacity: searchText.isEmpty ? 1.0 : 0.0,
-          child: Text(
-            groupName,
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+          child: ScaleAnimatedWidget.tween(
+            duration: Duration(milliseconds: 600),
+            curve: Curves.easeInOut,
+            scaleDisabled: 0,
+            scaleEnabled: 1,
+            child: Text(
+              groupName,
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
