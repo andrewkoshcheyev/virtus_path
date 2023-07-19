@@ -13,8 +13,8 @@ class QuoteDetailScreen extends StatefulWidget {
 }
 
 class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
-  late int currentIndex;
-  late List<Quote> quotes;
+  int currentIndex = 0;
+  List<Quote> quotes = [];
 
   @override
   void initState() {
@@ -24,9 +24,11 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
 
   void fetchQuotes() async {
     quotes = await DatabaseHelper.instance.getQuotes();
-    setState(() {
-      currentIndex = quotes.indexOf(widget.quote);
-    });
+    if (quotes.contains(widget.quote)) {
+      setState(() {
+        currentIndex = quotes.indexOf(widget.quote);
+      });
+    }
   }
 
   void goToNextQuote() {
@@ -47,6 +49,11 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (quotes.isEmpty) {
+      // Quotes have not been loaded yet, return a loading indicator
+      return CircularProgressIndicator();
+    }
+
     Quote currentQuote = quotes[currentIndex];
 
     return Scaffold(

@@ -2,7 +2,7 @@ import '../models/quote.dart';
 
 List<Quote> quotes = [
   Quote(
-      id: 0,
+      id: 3,
       text:
           "When I let go of what I am, I become what I might be. When I let go of what I have, I receive what I need.",
       author: "Tao Te Ching",
