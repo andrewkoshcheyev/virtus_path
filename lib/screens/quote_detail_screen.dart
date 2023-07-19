@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/quote.dart';
 import 'dart:ui';
 
-class QuoteDetailScreen extends StatefulWidget {
+class QuoteDetailScreen extends StatelessWidget {
   final Quote quote;
   final Function onNext;
   final Function onPrevious;
@@ -11,17 +11,28 @@ class QuoteDetailScreen extends StatefulWidget {
       {required this.quote, required this.onNext, required this.onPrevious});
 
   @override
-  _QuoteDetailScreenState createState() => _QuoteDetailScreenState();
-}
-
-class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => onPrevious(),
+          ),
+          IconButton(
+            icon: Icon(Icons.arrow_forward),
+            onPressed: () => onNext(),
+          ),
+        ],
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(widget.quote.imagePath),
+            image: AssetImage(quote.imagePath),
             fit: BoxFit.cover,
           ),
         ),
@@ -35,17 +46,13 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
                     Expanded(
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              widget.quote.text,
+                              quote.text,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 24,
@@ -57,7 +64,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                "- " + widget.quote.author,
+                                "- " + quote.author,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 16,
@@ -68,20 +75,6 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                           ],
                         ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.arrow_back_ios, color: Colors.white),
-                          onPressed: () => widget.onPrevious(),
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.arrow_forward_ios,
-                              color: Colors.white),
-                          onPressed: () => widget.onNext(),
-                        ),
-                      ],
                     ),
                   ],
                 ),
