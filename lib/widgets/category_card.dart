@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/category.dart';
 import 'package:animated_widgets/animated_widgets.dart';
-import '../screens/quote_detail_screen.dart';
-import '../data/quotes_data.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -21,16 +19,7 @@ class CategoryCard extends StatelessWidget {
         enabled: key.toString().contains('search'),
         child: InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => QuoteDetailScreen(
-                  quote: quotes.firstWhere((quote) => quote.categories.contains(
-                      category
-                          .title)), // pass the first quote of the category here
-                ),
-              ),
-            );
+            // Removed the navigation to QuoteDetailScreen
           },
           child: Container(
             decoration: BoxDecoration(
