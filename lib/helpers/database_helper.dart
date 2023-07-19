@@ -1,5 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import '../models/quote.dart';
+import 'dart:convert';
 
 class DatabaseHelper {
   static final _databaseName = "quotesDatabase.db";
@@ -50,8 +52,14 @@ class DatabaseHelper {
   // Inserts a row in the database where each key in the Map is a column name
   // and the value is the column value. The return value is the id of the
   // inserted row.
-  Future<int> insert(Map<String, dynamic> row) async {
+  Future<int> insert(Quote quote) async {
     Database db = await instance.database;
+    Map<String, dynamic> row = {
+      columnText: quote.text,
+      columnAuthor: quote.author,
+      columnImagePath: quote.imagePath,
+      columnCategories: jsonEncode(quote.categories),
+    };
     return await db.insert(table, row);
   }
 
@@ -89,5 +97,10 @@ class DatabaseHelper {
   Future<void> clear() async {
     Database db = await instance.database;
     await db.rawDelete('DELETE FROM $table');
+  }
+
+  Future<List<Quote>> getQuotes() async {
+    final rows = await queryAllRows();
+    return rows.map((row) => Quote.fromMap(row)).toList();
   }
 }

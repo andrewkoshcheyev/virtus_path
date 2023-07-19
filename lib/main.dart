@@ -36,12 +36,13 @@ class VirtusPathApp extends StatelessWidget {
 
     // Populate the database with the quotes data
     for (var quote in quotes) {
-      dbHelper.insert({
-        DatabaseHelper.columnText: quote.text,
-        DatabaseHelper.columnAuthor: quote.author,
-        DatabaseHelper.columnImagePath: quote.imagePath,
-        DatabaseHelper.columnCategories: quote.categories.join(','),
-      });
+      dbHelper.insert(Quote(
+        id: quote.id,
+        text: quote.text,
+        author: quote.author,
+        imagePath: quote.imagePath,
+        categories: quote.categories,
+      ));
     }
 
     return MaterialApp(
