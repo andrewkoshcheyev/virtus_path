@@ -153,21 +153,26 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              TextButton(
-                                style: TextButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/categories');
+                                },
+                                child: Card(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Categories',
+                                      style:
+                                          Theme.of(context).textTheme.headline2,
+                                    ),
                                   ),
                                 ),
-                                onPressed: () {},
-                                child: Text('Categories'),
                               ),
                               IconButton(
                                 icon: Icon(
                                   isShuffleActivated
                                       ? Icons.shuffle
-                                      : Icons.shuffle_on,
+                                      : Icons.shuffle_outlined,
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
