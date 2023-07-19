@@ -16,6 +16,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   int currentIndex = 0;
   List<Quote> quotes = [];
   bool isShuffleActivated = false;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -24,10 +25,25 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   }
 
   void fetchQuotes() async {
-    quotes = await DatabaseHelper.instance.getQuotes();
-    if (quotes.contains(widget.quote)) {
+    try {
+      // Show loading indicator
       setState(() {
-        currentIndex = quotes.indexOf(widget.quote);
+        isLoading = true;
+      });
+
+      quotes = await DatabaseHelper.instance.getQuotes();
+      if (quotes.contains(widget.quote)) {
+        setState(() {
+          currentIndex = quotes.indexOf(widget.quote);
+        });
+      }
+    } catch (e) {
+      // Handle error
+      print('Error fetching quotes: $e');
+    } finally {
+      // Hide loading indicator
+      setState(() {
+        isLoading = false;
       });
     }
   }
@@ -50,6 +66,10 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      // Show loading indicator
+      return CircularProgressIndicator();
+    }
     if (quotes.isEmpty) {
       // Quotes have not been loaded yet, return a loading indicator
       return CircularProgressIndicator();
