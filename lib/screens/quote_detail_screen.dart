@@ -70,14 +70,10 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
             color: Colors.black.withOpacity(0.6),
             child: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
                     Expanded(
                       flex: 7,
                       child: Center(
@@ -86,7 +82,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                           children: [
                             Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                                  const EdgeInsets.symmetric(horizontal: 2.0),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -139,18 +135,18 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                       flex: 3,
                       child: Column(
                         children: [
+                          Divider(color: Colors.white),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Icon(Icons.favorite,
-                                  color: Colors.white, size: 30),
-                              Icon(Icons.share, color: Colors.white, size: 30),
-                              Icon(Icons.edit, color: Colors.white, size: 30),
+                              Icon(Icons.favorite, color: Colors.white),
+                              Icon(Icons.share, color: Colors.white),
+                              Icon(Icons.edit, color: Colors.white),
                             ],
                           ),
                           SizedBox(height: 16),
                           Text(
-                            'Categories: ' + currentQuote.categories.join(', '),
+                            currentQuote.categories.join(', '),
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           ElevatedButton(
