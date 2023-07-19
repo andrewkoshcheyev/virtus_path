@@ -154,24 +154,29 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                             currentQuote.categories.join(', '),
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
-                          Card(
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text('Open Categories'),
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.shuffle,
-                              color: isShuffleActivated
-                                  ? Colors.blue
-                                  : Colors.white,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                isShuffleActivated = !isShuffleActivated;
-                              });
-                            },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Card(
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text('Open Categories'),
+                                ),
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.shuffle,
+                                  color: isShuffleActivated
+                                      ? Colors.blue
+                                      : Colors.white,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    isShuffleActivated = !isShuffleActivated;
+                                  });
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
