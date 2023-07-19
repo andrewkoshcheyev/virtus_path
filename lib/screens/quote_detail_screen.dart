@@ -150,25 +150,25 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                             ],
                           ),
                           SizedBox(height: 16),
-                          Text(
-                            currentQuote.categories.join(', '),
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Card(
-                                child: ElevatedButton(
-                                  onPressed: () {},
-                                  child: Text('Open Categories'),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
+                                onPressed: () {},
+                                child: Text('Categories'),
                               ),
                               IconButton(
                                 icon: Icon(
-                                  Icons.shuffle,
-                                  color: isShuffleActivated
-                                      ? Colors.blue
-                                      : Colors.white,
+                                  isShuffleActivated
+                                      ? Icons.shuffle
+                                      : Icons.shuffle_on,
+                                  color: Colors.white,
                                 ),
                                 onPressed: () {
                                   setState(() {
