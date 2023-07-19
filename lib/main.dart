@@ -14,6 +14,7 @@ import 'dart:io';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter/foundation.dart';
+import 'themes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +46,9 @@ class VirtusPathApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Virtus Path',
-      theme: ThemeData(
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      /*ThemeData(
         primaryColor: Color(0xFF44355B),
         accentColor: Color(0xFFECA72C),
         backgroundColor: Color(0xFF221E22),
@@ -54,7 +57,7 @@ class VirtusPathApp extends StatelessWidget {
         textTheme: TextTheme(
           bodyText2: TextStyle(color: Color(0xFFE5E5E5)),
         ),
-      ),
+      ),*/
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),

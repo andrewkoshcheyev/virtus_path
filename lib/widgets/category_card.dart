@@ -34,18 +34,12 @@ class CategoryCard extends StatelessWidget {
           },
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(15.0),
             ),
             child: Center(
-              child: Text(
-                category.title,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: Text(category.title,
+                  style: Theme.of(context).textTheme.headline2),
             ),
           ),
         ),

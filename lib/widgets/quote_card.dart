@@ -82,24 +82,14 @@ class _QuoteCardsSectionState extends State<QuoteCardsSection> {
                     children: [
                       Text(
                         quote.text,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.headline1,
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(height: 8),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: Text(
-                          "- " + quote.author,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
+                        child: Text("- " + quote.author,
+                            style: Theme.of(context).textTheme.bodyText1),
                       ),
                     ],
                   ),

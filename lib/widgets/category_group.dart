@@ -49,11 +49,7 @@ class CategoryGroup extends StatelessWidget {
             scaleEnabled: 1,
             child: Text(
               groupName,
-              style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: Theme.of(context).textTheme.headline1,
             ),
           ),
         ),
