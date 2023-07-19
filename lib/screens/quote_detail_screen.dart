@@ -15,6 +15,7 @@ class QuoteDetailScreen extends StatefulWidget {
 class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   int currentIndex = 0;
   List<Quote> quotes = [];
+  bool isShuffleActivated = false;
 
   @override
   void initState() {
@@ -74,6 +75,10 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
                     Expanded(
                       flex: 7,
                       child: Center(
@@ -149,9 +154,24 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                             currentQuote.categories.join(', '),
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text('Open Categories'),
+                          Card(
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              child: Text('Open Categories'),
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.shuffle,
+                              color: isShuffleActivated
+                                  ? Colors.blue
+                                  : Colors.white,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                isShuffleActivated = !isShuffleActivated;
+                              });
+                            },
                           ),
                         ],
                       ),
