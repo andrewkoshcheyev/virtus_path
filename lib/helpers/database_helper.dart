@@ -4,16 +4,16 @@ import '../models/quote.dart';
 import 'dart:convert';
 
 class DatabaseHelper {
-  static final _databaseName = "quotesDatabase.db";
-  static final _databaseVersion = 1;
+  static const _databaseName = "quotesDatabase.db";
+  static const _databaseVersion = 1;
 
-  static final table = 'quotes';
+  static const table = 'quotes';
 
-  static final columnId = '_id';
-  static final columnText = 'text';
-  static final columnAuthor = 'author';
-  static final columnImagePath = 'imagePath';
-  static final columnCategories = 'categories';
+  static const columnId = '_id';
+  static const columnText = 'text';
+  static const columnAuthor = 'author';
+  static const columnImagePath = 'imagePath';
+  static const columnCategories = 'categories';
 
   // make this a singleton class
   DatabaseHelper._privateConstructor();

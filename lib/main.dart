@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 import 'screens/categories_screen.dart';
-import 'screens/quote_detail_screen.dart';
-import 'screens/challenge_screen.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/settings_screen.dart';
 import 'models/quote.dart';
-import 'screens/draft_screen01.dart';
 import 'screens/draft_screen02.dart';
 import 'data/quotes_data.dart'; // import the quotes data
 import 'helpers/database_helper.dart'; // import the database helper
 import 'dart:io';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:flutter/foundation.dart';
 import 'themes.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,12 +20,14 @@ void main() async {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
   }
-  runApp(VirtusPathApp());
+  runApp(const VirtusPathApp());
 }
 
 class VirtusPathApp extends StatelessWidget {
   // Create an instance of the database helper
   final dbHelper = DatabaseHelper.instance;
+
+  const VirtusPathApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +62,10 @@ class VirtusPathApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),
-        '/settings': (context) => SettingsScreen(),
-        '/challenges': (context) => Draft02Screen(),
-        '/categories': (context) => CategoriesScreen(),
-        '/favorites': (context) => FavoritesScreen(),
+        '/settings': (context) => const SettingsScreen(),
+        '/challenges': (context) => const Draft02Screen(),
+        '/categories': (context) => const CategoriesScreen(),
+        '/favorites': (context) => const FavoritesScreen(),
       },
     );
   }

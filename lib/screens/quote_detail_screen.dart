@@ -6,7 +6,7 @@ import '../helpers/database_helper.dart';
 class QuoteDetailScreen extends StatefulWidget {
   final Quote quote;
 
-  QuoteDetailScreen({required this.quote});
+  const QuoteDetailScreen({super.key, required this.quote});
 
   @override
   _QuoteDetailScreenState createState() => _QuoteDetailScreenState();
@@ -68,11 +68,11 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
   Widget build(BuildContext context) {
     if (isLoading) {
       // Show loading indicator
-      return CircularProgressIndicator();
+      return const CircularProgressIndicator();
     }
     if (quotes.isEmpty) {
       // Quotes have not been loaded yet, return a loading indicator
-      return CircularProgressIndicator();
+      return const CircularProgressIndicator();
     }
 
     Quote currentQuote = quotes[currentIndex];
@@ -96,7 +96,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                      icon: const Icon(Icons.arrow_back, color: Colors.white),
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                     Expanded(
@@ -113,7 +113,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   IconButton(
-                                    icon: Icon(Icons.arrow_back_ios,
+                                    icon: const Icon(Icons.arrow_back_ios,
                                         color: Colors.white),
                                     onPressed: () => goToPreviousQuote(),
                                   ),
@@ -122,19 +122,19 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                                       children: [
                                         Text(
                                           currentQuote.text,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
                                           ),
                                           textAlign: TextAlign.center,
                                         ),
-                                        SizedBox(height: 8),
+                                        const SizedBox(height: 8),
                                         Align(
                                           alignment: Alignment.centerRight,
                                           child: Text(
-                                            "- " + currentQuote.author,
-                                            style: TextStyle(
+                                            "- ${currentQuote.author}",
+                                            style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
                                               fontWeight: FontWeight.normal,
@@ -145,7 +145,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                                     ),
                                   ),
                                   IconButton(
-                                    icon: Icon(Icons.arrow_forward_ios,
+                                    icon: const Icon(Icons.arrow_forward_ios,
                                         color: Colors.white),
                                     onPressed: () => goToNextQuote(),
                                   ),
@@ -160,8 +160,8 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                       flex: 3,
                       child: Column(
                         children: [
-                          Divider(color: Colors.white),
-                          Row(
+                          const Divider(color: Colors.white),
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Icon(Icons.favorite, color: Colors.white),
@@ -169,7 +169,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                               Icon(Icons.edit, color: Colors.white),
                             ],
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -183,7 +183,7 @@ class _QuoteDetailScreenState extends State<QuoteDetailScreen> {
                                     child: Text(
                                       'Categories',
                                       style:
-                                          Theme.of(context).textTheme.headline2,
+                                          Theme.of(context).textTheme.displayMedium,
                                     ),
                                   ),
                                 ),

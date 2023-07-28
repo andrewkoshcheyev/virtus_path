@@ -6,6 +6,8 @@ import 'package:animated_widgets/animated_widgets.dart';
 import '../widgets/category_card.dart';
 
 class CategoriesScreen extends StatefulWidget {
+  const CategoriesScreen({super.key});
+
   @override
   _CategoriesScreenState createState() => _CategoriesScreenState();
 }
@@ -31,7 +33,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     .toList();*/
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -42,31 +44,31 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.white),
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                   Expanded(
                     child: AnimatedSwitcher(
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       transitionBuilder:
                           (Widget child, Animation<double> animation) {
                         return SlideTransition(
-                          child: child,
                           position: Tween<Offset>(
-                            begin: Offset(0.0, -1.0),
-                            end: Offset(0.0, 0.0),
+                            begin: const Offset(0.0, -1.0),
+                            end: const Offset(0.0, 0.0),
                           ).animate(animation),
+                          child: child,
                         );
                       },
                       child: _isSearching
-                          ? Container(
+                          ? SizedBox(
                               width: MediaQuery.of(context).size.width * 0.7,
                               child: TextField(
                                 controller: _searchController,
-                                style: TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
+                                style: const TextStyle(color: Colors.white),
+                                decoration: const InputDecoration(
                                   hintText: 'Search',
                                   hintStyle: TextStyle(color: Colors.white),
                                 ),
@@ -75,7 +77,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                 },
                               ),
                             )
-                          : Align(
+                          : const Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 'Categories',
@@ -90,7 +92,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.search, color: Colors.white),
+                    icon: const Icon(Icons.search, color: Colors.white),
                     onPressed: () {
                       setState(() {
                         _isSearching = true;
@@ -99,7 +101,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Expanded(
                 child: _searchController.text.isEmpty
                     ? ListView(
@@ -118,13 +120,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                         mainAxisSpacing: 10,
                         children: searchResults.map((category) {
                           return ScaleAnimatedWidget.tween(
-                            duration: Duration(milliseconds: 600),
+                            duration: const Duration(milliseconds: 600),
                             curve: Curves.easeInOut,
                             scaleDisabled: 0.8,
                             scaleEnabled: 1,
                             child: CategoryCard(
                                 category: category,
-                                key: ValueKey(category.title + 'search')),
+                                key: ValueKey('${category.title}search')),
                           );
                         }).toList(),
                       ),

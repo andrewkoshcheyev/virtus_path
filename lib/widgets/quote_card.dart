@@ -8,7 +8,7 @@ import '../screens/quote_detail_screen.dart';
 class QuoteCardsSection extends StatefulWidget {
   final List<Quote> quotes;
 
-  QuoteCardsSection({required this.quotes});
+  const QuoteCardsSection({super.key, required this.quotes});
 
   @override
   _QuoteCardsSectionState createState() => _QuoteCardsSectionState();
@@ -25,7 +25,7 @@ class _QuoteCardsSectionState extends State<QuoteCardsSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 400,
       child: SwipeableCardsSection(
         cardController: _cardController,
@@ -82,20 +82,20 @@ class _QuoteCardsSectionState extends State<QuoteCardsSection> {
                     children: [
                       Text(
                         quote.text,
-                        style: Theme.of(context).textTheme.headline1,
+                        style: Theme.of(context).textTheme.displayLarge,
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: Text("- " + quote.author,
-                            style: Theme.of(context).textTheme.bodyText1),
+                        child: Text("- ${quote.author}",
+                            style: Theme.of(context).textTheme.bodyLarge),
                       ),
                     ],
                   ),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 top: 16,
                 left: 16,
                 child: Icon(
@@ -107,23 +107,23 @@ class _QuoteCardsSectionState extends State<QuoteCardsSection> {
               Positioned(
                 bottom: 16,
                 child: Padding(
-                  padding: EdgeInsets.only(right: 16.0),
+                  padding: const EdgeInsets.only(right: 16.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
                         iconSize: 30.0,
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.favorite_border,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(width: 12.0),
+                      const SizedBox(width: 12.0),
                       IconButton(
                         iconSize: 30.0,
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.more_horiz,
                           color: Colors.white,
                         ),

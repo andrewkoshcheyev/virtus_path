@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NavigationGrid extends StatelessWidget {
+  const NavigationGrid({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,7 +37,7 @@ class NavigationGrid extends StatelessWidget {
           Navigator.pushNamed(context, route);
         },
         child: Center(
-          child: Text(title, style: Theme.of(context).textTheme.headline2),
+          child: Text(title, style: Theme.of(context).textTheme.displayMedium),
         ),
       ),
     );

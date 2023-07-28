@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 class Draft01Screen extends StatelessWidget {
+  const Draft01Screen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Title", textAlign: TextAlign.center),
+        title: const Text("Title", textAlign: TextAlign.center),
       ),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
               CircleAvatar(
                 radius: MediaQuery.of(context).size.width * 0.25,
-                backgroundImage: AssetImage("assets/images/profile_pic.jpg"),
+                backgroundImage: const AssetImage("assets/images/profile_pic.jpg"),
               ),
               Text(
                 "John Doe",
@@ -38,7 +40,7 @@ class Draft01Screen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: MediaQuery.of(context).size.width * 0.05),
                       ),
-                      Text("Posts")
+                      const Text("Posts")
                     ],
                   ),
                   Column(
@@ -47,7 +49,7 @@ class Draft01Screen extends StatelessWidget {
                         Icons.people,
                         size: MediaQuery.of(context).size.width * 0.05,
                       ),
-                      Text("Followers")
+                      const Text("Followers")
                     ],
                   ),
                   Column(
@@ -56,12 +58,12 @@ class Draft01Screen extends StatelessWidget {
                         Icons.star,
                         size: MediaQuery.of(context).size.width * 0.05,
                       ),
-                      Text("Rating")
+                      const Text("Rating")
                     ],
                   )
                 ],
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Icon(Icons.home),

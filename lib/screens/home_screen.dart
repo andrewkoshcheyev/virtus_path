@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import '../models/quote.dart';
-import 'dart:ui';
 import 'package:swipeable_card_stack/swipeable_card_stack.dart';
 import '../widgets/navigation_grid.dart';
 import '../widgets/quote_card.dart';
-import 'package:animations/animations.dart';
 import '../data/quotes_data.dart';
 
 class HomeScreen extends StatelessWidget {
   int _selectedIndex = 0;
+
+  HomeScreen({super.key});
 
   void _onItemTapped(int index) {
     _selectedIndex = index;
@@ -17,12 +16,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SwipeableCardSectionController _cardController =
+    SwipeableCardSectionController cardController =
         SwipeableCardSectionController();
 
     return Scaffold(
       backgroundColor:
-          Theme.of(context).backgroundColor, // Set the background color
+          Theme.of(context).colorScheme.background, // Set the background color
       body: Stack(
         children: [
           SafeArea(
@@ -37,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Welcome, Username',
                             style: TextStyle(
                               fontSize: 24.0,
@@ -46,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                            icon: Icon(Icons.menu),
+                            icon: const Icon(Icons.menu),
                             iconSize: 32.0, // Make the icon bigger
                             color: Colors.white, // Set the icon color
                             onPressed: () {
@@ -62,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                               20.0), // Space between QuoteCardStack and NavigationGrid
                       child: QuoteCardsSection(quotes: quotes),
                     ),
-                    NavigationGrid(),
+                    const NavigationGrid(),
                   ],
                 ),
               ),
@@ -73,8 +72,8 @@ class HomeScreen extends StatelessWidget {
             right: 0,
             bottom: 0,
             child: Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               height: 60,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -84,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                     color: Colors.black.withOpacity(0.2),
                     spreadRadius: 0,
                     blurRadius: 10,
-                    offset: Offset(0, 5), // changes position of shadow
+                    offset: const Offset(0, 5), // changes position of shadow
                   ),
                 ],
               ),

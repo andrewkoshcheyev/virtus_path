@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Draft02Screen extends StatelessWidget {
+  const Draft02Screen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,8 +16,8 @@ class Draft02Screen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  padding: EdgeInsets.all(16),
-                  child: Column(
+                  padding: const EdgeInsets.all(16),
+                  child: const Column(
                     children: [
                       Text(
                         "This is an inspirational quote",
@@ -35,15 +37,15 @@ class Draft02Screen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               // Section 1
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(10)),
-                child: Column(
+                child: const Column(
                   children: [
                     Icon(Icons.person, size: 60, color: Colors.white),
                     SizedBox(height: 8),
@@ -58,14 +60,14 @@ class Draft02Screen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               // Section 2
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     color: Colors.red, borderRadius: BorderRadius.circular(10)),
-                child: Column(
+                child: const Column(
                   children: [
                     Icon(Icons.settings, size: 60, color: Colors.white),
                     SizedBox(height: 8),
@@ -80,15 +82,15 @@ class Draft02Screen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
 
               // Section 3
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(10.0)),
-                child: Column(
+                child: const Column(
                   children: [
                     Icon(Icons.menu, size: 60, color: Colors.white),
                     SizedBox(height: 8),
@@ -105,7 +107,7 @@ class Draft02Screen extends StatelessWidget {
 
               // Bottom navigation
               Container(
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [

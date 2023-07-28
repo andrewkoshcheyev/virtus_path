@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-import '../models/category.dart';
-import '../data/category_data.dart';
-import '../widgets/category_card.dart';
-import '../widgets/category_group.dart';
 
 /*class SearchResultsScreen extends StatefulWidget {
   final String searchText;

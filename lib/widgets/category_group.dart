@@ -8,7 +8,7 @@ class CategoryGroup extends StatelessWidget {
   final List<Category> categories;
   final String searchText;
 
-  CategoryGroup({
+  const CategoryGroup({super.key, 
     required this.groupName,
     required this.categories,
     required this.searchText,
@@ -25,7 +25,7 @@ class CategoryGroup extends StatelessWidget {
             ? categories
             : searchResults)
         .map((category) => ScaleAnimatedWidget.tween(
-              duration: Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 600),
               curve: Curves.easeInOut,
               scaleDisabled: 0,
               scaleEnabled: 1,
@@ -40,23 +40,23 @@ class CategoryGroup extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AnimatedOpacity(
-          duration: Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 500),
           opacity: searchText.isEmpty ? 1.0 : 0.0,
           child: ScaleAnimatedWidget.tween(
-            duration: Duration(milliseconds: 600),
+            duration: const Duration(milliseconds: 600),
             curve: Curves.easeInOut,
             scaleDisabled: 0,
             scaleEnabled: 1,
             child: Text(
               groupName,
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.displayLarge,
             ),
           ),
         ),
-        SizedBox(height: 10.0),
+        const SizedBox(height: 10.0),
         GridView.count(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
           childAspectRatio: 2.5,
           crossAxisSpacing: 10,

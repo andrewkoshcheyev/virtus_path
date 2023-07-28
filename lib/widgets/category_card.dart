@@ -4,16 +4,17 @@ import 'package:animated_widgets/animated_widgets.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
+  @override
   final Key key;
 
-  CategoryCard({required this.category, required this.key}) : super(key: key);
+  const CategoryCard({required this.category, required this.key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ScaleAnimatedWidget.tween(
-        duration: Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 500),
         scaleDisabled: 1,
         scaleEnabled: 0,
         enabled: key.toString().contains('search'),
@@ -28,7 +29,7 @@ class CategoryCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(category.title,
-                  style: Theme.of(context).textTheme.headline2),
+                  style: Theme.of(context).textTheme.displayMedium),
             ),
           ),
         ),
