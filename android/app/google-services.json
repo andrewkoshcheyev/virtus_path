@@ -29,6 +29,13 @@
             {
               "client_id": "194378611204-qqgltgu84s0kisdev3lcim1hvq16e5ev.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "194378611204-eflath255gdcngjd94rtf9qmtthckhdf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.virtusPath"
+              }
             }
           ]
         }
