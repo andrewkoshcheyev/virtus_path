@@ -43,3 +43,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 firebase-tools-instant-win.exe
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build

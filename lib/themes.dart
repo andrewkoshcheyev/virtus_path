@@ -12,15 +12,18 @@ class AppTheme {
       displayMedium: TextStyle(
           color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
     ),
-    appBarTheme: const AppBarTheme(
-      color: Colors.white, toolbarTextStyle: TextTheme(
+    appBarTheme: AppBarTheme(
+      color: Colors.white,
+      toolbarTextStyle: TextTheme(
         titleLarge: TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-      ).bodyMedium, titleTextStyle: TextTheme(
+      ).bodyMedium,
+      titleTextStyle: TextTheme(
         titleLarge: TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
       ).titleLarge,
-    ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
+    ),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.black),
   );
 
   static final darkTheme = ThemeData(
@@ -34,14 +37,17 @@ class AppTheme {
       displayMedium: TextStyle(
           color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
     ),
-    appBarTheme: const AppBarTheme(
-      color: Colors.black, toolbarTextStyle: TextTheme(
+    appBarTheme: AppBarTheme(
+      color: Colors.black,
+      toolbarTextStyle: TextTheme(
         titleLarge: TextStyle(
             color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-      ).bodyMedium, titleTextStyle: TextTheme(
+      ).bodyMedium,
+      titleTextStyle: TextTheme(
         titleLarge: TextStyle(
             color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
       ).titleLarge,
-    ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
+    ),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
   );
 }

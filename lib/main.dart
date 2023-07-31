@@ -20,14 +20,14 @@ void main() async {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
   }
-  runApp(const VirtusPathApp());
+  runApp(VirtusPathApp());
 }
 
 class VirtusPathApp extends StatelessWidget {
   // Create an instance of the database helper
   final dbHelper = DatabaseHelper.instance;
 
-  const VirtusPathApp({super.key});
+  VirtusPathApp({super.key});
 
   @override
   Widget build(BuildContext context) {
